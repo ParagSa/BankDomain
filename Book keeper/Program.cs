@@ -1,6 +1,8 @@
 
 using Book_keeper.Mail_Services;
 using Book_keeper.Settings;
+using Book_Keeper_DbContext_Layer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,14 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddDbContext<Book_Keeper_DbContext_Layer.DbContextLayer>(Options => Options.UseSqlServer(builder.Configuration
     .GetConnectionString("MVCConnectionString")));
+
+builder.Services.AddDbContext<Book_Keeper_DbContext_Layer.AuthDbContext>(Options => Options.UseSqlServer(builder.Configuration
+    .GetConnectionString("AuthDbConnectionString")));
+
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
+
+
 var provider = builder.Services.BuildServiceProvider();
 var config = provider.GetService<IConfiguration>();
 builder.Services.Configure<MailSettings>(config.GetSection("MailSettings"));
@@ -35,6 +45,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 

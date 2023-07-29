@@ -21,5 +21,7 @@ namespace Repositories.User
         Task<List<T>> GetAllObjectsByObject(int user_id);
 
         Task<T> DeleteObject(int id);
+
+        Task<Book_Keeper_DomainModels.User> FindObjectByUserName(string request);
     }
 }

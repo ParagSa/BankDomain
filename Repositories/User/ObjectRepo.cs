@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Book_Keeper_DomainModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,17 @@ namespace Repositories.User
         }
 
         public Task<bool> Exist(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Book_Keeper_DomainModels.User> FindObjectByUserName(string username) 
+        {
+            Book_Keeper_DomainModels.User obj = await _dbLayer.Users.FirstOrDefaultAsync(x => x.UserName.Equals(username));
+            return obj;
+        }
+
+        public Task<T> FindObjectByUserName(T request)
         {
             throw new NotImplementedException();
         }
@@ -56,5 +68,7 @@ namespace Repositories.User
         {
             throw new NotImplementedException();
         }
+
+     
     }
 }
