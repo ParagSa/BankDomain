@@ -1,0 +1,27 @@
+﻿@model Book_keeper.Models.ViewModels.UserViewModel
+
+<form method="post" asp-action="RegisterUser">
+   
+    @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" asp-for="UserName">
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" asp-for="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" asp-for="Password">
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" asp-for="ConfrimPassword">
+        <span asp-validation-for="ConfrimPassword" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
